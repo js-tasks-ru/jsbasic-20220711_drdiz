@@ -2,11 +2,11 @@ function factorial(n) {
   if (n < 2 ) {
     return 1;
    } else {
-    let i = n;
-    while (i > 1) {
-      --i;
-      n = n * i;
+    let factorial = n;
+    while (n > 1) {
+      --n;
+      factorial = factorial * n;
     }
-    return n;
+    return factorial;
   }
 }
