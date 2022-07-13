@@ -13,8 +13,7 @@ function isValid(name) {
   if (name == null) {
     return false;
   } else {
-    let NameWithoutSpaces = name.replace(/\s/g, '');
-    if (name.length < 4 || NameWithoutSpaces.length < name.length) {
+    if (name.length < 4 || name.indexOf(' ') > -1 ) {
       return false;
     } else {
       return true;
