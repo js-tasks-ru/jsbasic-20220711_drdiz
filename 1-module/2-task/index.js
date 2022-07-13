@@ -10,7 +10,16 @@ function print(text) {
  * чтобы функция sayHello работала корректно
  */
 function isValid(name) {
-  // ваш код...
+  if (name == null) {
+    return false;
+  } else {
+    let NameWithoutSpaces = name.replace(/\s/g, '');
+    if (name.length < 4 || NameWithoutSpaces.length < name.length) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 }
 
 function sayHello() {
