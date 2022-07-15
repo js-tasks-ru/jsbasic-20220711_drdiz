@@ -1,7 +1,6 @@
 function ucFirst(str) {
   if (str.length > 0) {
-    let firstUpStr = str.charAt(0).toUpperCase() + str.slice(1);
-    return firstUpStr;
+    return str.charAt(0).toUpperCase() + str.slice(1);     
   }
-  else return str;
+  return str;
 }
