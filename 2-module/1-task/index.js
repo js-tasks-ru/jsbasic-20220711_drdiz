@@ -1,3 +1,9 @@
 function sumSalary(salaries) {
-  // ваш код...
+  let sumSal = 0;
+  for (key in salaries) {
+    if (Number.isInteger(salaries[key])) {
+      sumSal += salaries[key];
+    }
+  }
+  return sumSal
 }
