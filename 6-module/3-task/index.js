@@ -5,12 +5,10 @@ export default class Carousel {
 
   constructor(slides) {
     this.slides = slides;
-    this.#elem = this.render();
-    this.slide_count = slides.length;
+    this.#elem = this.render();    
   }
 
-  #html() {
-    
+  #html() {    
     return `<div class="carousel">
     <div class="carousel__arrow carousel__arrow_right">
       <img src="/assets/images/icons/angle-icon.svg" alt="icon">
