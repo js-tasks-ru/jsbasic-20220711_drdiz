@@ -5,10 +5,10 @@ export default class Carousel {
 
   constructor(slides) {
     this.slides = slides;
-    this.#elem = this.render();    
+    this.#elem = this.render();
   }
 
-  #html() {    
+  #html() {
     return `<div class="carousel">
     <div class="carousel__arrow carousel__arrow_right">
       <img src="/assets/images/icons/angle-icon.svg" alt="icon">
@@ -36,18 +36,9 @@ export default class Carousel {
   render() {
     let slideCard = createElement(this.#html());
 
-    //событие 
+    //массив кнопок + событие
     const addCarouselButton = Array.from(slideCard.querySelectorAll('.carousel__button'));
-    
-    addCarouselButton.forEach((btn)=> {
-      btn.addEventListener('click', (event)=> {
-        let target = event.target;
-        const addCarouselButtonEvent = new CustomEvent("product-add", 
-          { detail: target.closest('div[data-id]').getAttribute('data-id'),
-            bubbles: true});
-        slideCard.dispatchEvent(addCarouselButtonEvent);
-      });      
-    });
+    addCarouselButton.forEach((btn) => {btn.addEventListener('click', this.#onMenuClick) });
 
     // поведение слайдера
     let rightArrow = slideCard.querySelector('.carousel__arrow_right');
@@ -59,16 +50,28 @@ export default class Carousel {
     leftArrow.addEventListener('click', () => Sliderunner(1));
     rightArrow.addEventListener('click', () => Sliderunner(-1));
 
-    function Sliderunner(direction) {        
-      let slide = slideCard.querySelector('.carousel__inner');      
-      let slideWdth = slide.offsetWidth;      
+    function Sliderunner(direction) {
+      let slide = slideCard.querySelector('.carousel__inner');
+      let slideWdth = slide.offsetWidth;
       step += slideWdth * direction;
       slide.style.transform = `translateX(${step}px)`;
-      (step == -(addCarouselButton.length-1) * slideWdth) ? carouselRightArrow.style.display = 'none' : carouselRightArrow.style.display = '';
+      (step == -(addCarouselButton.length - 1) * slideWdth) ? carouselRightArrow.style.display = 'none' : carouselRightArrow.style.display = '';
       (step == 0) ? carouselLeftArrow.style.display = 'none' : carouselLeftArrow.style.display = '';
     }
     return slideCard;
   }
+
+
+  // обработчик события клик
+  #onMenuClick = (event) => {
+    let target = event.target;
+    const addCarouselButtonEvent = new CustomEvent("product-add",
+      {
+        detail: target.closest('div[data-id]').getAttribute('data-id'),
+        bubbles: true
+      });
+      this.#elem.dispatchEvent(addCarouselButtonEvent);
+  };
 
   get elem() {
     return this.#elem;
