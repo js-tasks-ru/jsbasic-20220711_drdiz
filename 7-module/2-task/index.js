@@ -30,11 +30,11 @@ export default class Modal {
   render() {
     let modal = createElement(this.#html());
 
-    // Событие зарытия на кнопку
+    // Событие зкарытия на кнопку
     const removeModalButton = modal.querySelector('.modal__close');
     removeModalButton.addEventListener('click', this.#closeModal);
 
-    // Событие зарытия на клавишу ESC
+    // Событие закрытия на клавишу ESC
     document.addEventListener('keydown', (event) => {
       if (event.code === 'Escape') {
         this.close();
@@ -70,6 +70,7 @@ export default class Modal {
     document.body.append(this.#container);
   }
 
+  // закрытие
   close() {
     const body = document.querySelector('body');
     body.classList.remove('is-modal-open');
@@ -77,7 +78,6 @@ export default class Modal {
   }
 
   #closeModal = () => {
-    this.close();
-    once: true;
+    this.close();    
   }
 }
